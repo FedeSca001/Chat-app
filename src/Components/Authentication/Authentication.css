@@ -1,0 +1,71 @@
+.authentication-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide en dos columnas */
+    height: 100vh;
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+  }
+  
+  .welcome-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .welcome-text {
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .app-description {
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .toggle-button-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .button-container {
+    margin-bottom: 0;
+  }
+  
+  .toggle-button {
+    padding: 12px 24px;
+    background-color: #007900;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 10px 0;
+    transition: background-color 0.2s;
+  }
+  
+  .toggle-button:hover {
+    background-color: #004e00;
+  }
+  
+  .container {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #ff9c9c;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  

@@ -3,7 +3,7 @@ import './App.css';
 import { Authentication } from './Components/Authentication/Authentication';
 import { ChatContainer } from './Components/ChatContainer/ChatContainer';
 import { NavBar } from './Components/NavBar/NavBar';
-import { deleteUser, getUser, newUser } from './Logic/Storage/storage';
+import { getUser } from './Logic/Storage/storage';
 
 function App() {
   const [user, setUser] = useState(null);
