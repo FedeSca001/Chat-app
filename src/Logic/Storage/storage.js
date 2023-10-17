@@ -1,15 +1,19 @@
 export const getUser = () => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      return storedUser;
+        const userObj = JSON.parse(storedUser);
+        return userObj;
     }
 }
 
-export function newUser (){
+export function newUser (name,lastName,password,email,age){
     const user = { 
-        name: 'John', 
-        email: 'john@example.com',
-        password: '123456' };
+        name: name,
+        lastName:lastName,
+        email: email,
+        password: password,
+        age: age
+    };
     localStorage.setItem('user', JSON.stringify(user));
 }
 

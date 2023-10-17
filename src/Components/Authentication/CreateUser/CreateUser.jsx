@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CreateUser.css'
+import { newUser } from '../../../Logic/Storage/storage';
 
 export function CreateUser() {
   const [name, setName] = useState('');
@@ -11,7 +12,7 @@ export function CreateUser() {
   const handleRegistration = () => {
     // Aquí puedes agregar la lógica de registro, como enviar los datos al servidor.
     // Por ahora, solo mostraremos los datos ingresados.
-    alert(`Nombre: ${name}, Apellido: ${lastName}, Contraseña: ${password}, Correo Electrónico: ${email}, Edad: ${age}`);
+    newUser(name,lastName,password,email,age)
   }
 
   return (

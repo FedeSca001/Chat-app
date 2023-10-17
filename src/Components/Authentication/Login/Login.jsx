@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import './Login.css'
+import { getUser } from '../../../Logic/Storage/storage';
 
 export function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Aquí puedes agregar la lógica de autenticación, como enviar los datos al servidor.
-    // Por ahora, solo mostraremos los datos ingresados.
-    alert(`Usuario: ${userName}, Contraseña: ${password}`);
+    getUser()
   }
 
   return (
