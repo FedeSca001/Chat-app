@@ -1,22 +1,30 @@
-import { MessageInput } from './ChatArea/MessageInput/MessageInput'
-import { MessageList } from './ChatArea/MessageList/MessageList'
-import './ChatContainer.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// este componente recibe la lista de chats del ususario
-// el componente MessageList recibe el chat y hace un .map()
-export function ChatContainer() {
+import { ChatArea } from './ChatArea/ChatArea';
+import './ChatContainer.css';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { ContactList } from './ContactList/ContactList';
+
+export function ChatContainer(props) {
+  const { user } = props;
+
+  // obtener lista de chats
+  const chats = [
+    { id: 1, name: 'Chat 1' },
+    { id: 2, name: 'Chat 2' },
+    // Otros chats...
+  ];
+
   return (
     <div className='chat-container'>
       <aside className='aside'>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element= {<MessageList />}/>
+            <Route path='/' element={<ContactList userName={user} chats={chats} />} />
           </Routes>
         </BrowserRouter>
       </aside>
       <main className='main'>
-        <MessageInput />
+        <ChatArea />
       </main>
     </div>
-  )
+  );
 }

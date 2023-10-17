@@ -9,10 +9,10 @@ Componentes:
       - MessageInput
         - MessageComposer
   - Navbar
+    - Notification
   - Authentication
     - Login
     - CreateUser
-  - Notification
 Logic:
   - Storage
   - User

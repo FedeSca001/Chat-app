@@ -19,7 +19,7 @@ function App() {
       {user ? (
         <>
           <NavBar />
-          <ChatContainer />
+          <ChatContainer user={user} />
         </>
       ) : (
         <Authentication />
