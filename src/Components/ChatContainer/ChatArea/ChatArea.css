@@ -1,0 +1,16 @@
+/* ChatArea.css */
+.chat-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .message-list {
+    flex: 1; /* Ocupará el espacio restante */
+    overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+  }
+  
+  .message-input {
+    margin-top: auto; /* Coloca MessageInput en la parte inferior */
+  }
+  

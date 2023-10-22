@@ -1,0 +1,41 @@
+/* MessageInput.css */
+.message-input {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .message-input form {
+    display: flex;
+  }
+  
+  .message-textarea {
+    width: 100%;
+    min-height: 80px;
+    max-height: 120px;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .message-button {
+    max-width: 20%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+  }
+  
+  .message-button:hover {
+    background-color: #0056b3;
+  }
+  

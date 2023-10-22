@@ -4,13 +4,12 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { ContactList } from './ContactList/ContactList';
 
 export function ChatContainer(props) {
-  const { user } = props;
+  const { user, messages } = props;
 
   // obtener lista de chats
   const chats = [
-    { id: 1, name: 'Chat 1' },
-    { id: 2, name: 'Chat 2' },
-    // Otros chats...
+    { id: 1, message: 'Hola amigo, hoy salimos a psear?', fromUser: 'Raul' },
+    { id: 2, message: 'Hola perdido', fromUser: 'Pedro' },
   ];
 
   return (
@@ -18,12 +17,12 @@ export function ChatContainer(props) {
       <aside className='aside'>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<ContactList userName={user} chats={chats} />} />
+            <Route path='/' element={<ContactList user={user} messages={messages}/>} />
           </Routes>
         </BrowserRouter>
       </aside>
       <main className='main'>
-        <ChatArea />
+        <ChatArea user={user} messages={messages}/>
       </main>
     </div>
   );
