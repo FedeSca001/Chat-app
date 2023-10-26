@@ -31,15 +31,6 @@ export const getMessages = () => {
     }
 }
 
-const chat = {
-    id: crypto.randomUUID(),
-    fromUser: 'Pedro',
-    toUser: 'Pablo',
-    message: 'Hola brodi',
-    date: new Date()
-}
-localStorage.setItem('messages', JSON.stringify(chat));
-
 export function newMessage (message,fromUser, toUser ){
     const chat = {
         id: crypto.randomUUID(),

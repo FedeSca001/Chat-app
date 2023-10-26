@@ -4,6 +4,7 @@ import { MessageList } from './MessageList/MessageList'
 import { getMessages } from '../../../Logic/Storage/storage'
 import { useEffect, useState } from 'react'
 import './ChatArea.css'
+import { Route, Routes } from 'react-router-dom'
 
 export function ChatArea (props){
     const { user, messages } = props;
@@ -16,7 +17,9 @@ export function ChatArea (props){
     return(
         <>
             <h2>Chat Area:</h2>
-            <MessageList/>
+            <Routes>
+                <Route path='/:userchat' element={<MessageList/>}/>
+            </Routes>
             <MessageInput/>
         </>
     )

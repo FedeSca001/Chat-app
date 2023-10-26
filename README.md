@@ -1,6 +1,7 @@
 Componentes:
 - App (ChatApp) // obtiene datos del localstorage
-  - ChatContainer //envia mensages y user a los childrens
+
+  - ChatContainer//envia mensages y user a los childrens
     - ContactList
       - ContactItem
     - ChatArea
@@ -8,8 +9,10 @@ Componentes:
         - Message
       - MessageInput
         - MessageComposer
+
   - Navbar
     - Notification
+
   - Authentication
     - Login
     - CreateUser

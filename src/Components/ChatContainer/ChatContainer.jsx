@@ -11,15 +11,12 @@ export function ChatContainer(props) {
     { id: 1, message: 'Hola amigo, hoy salimos a psear?', fromUser: 'Raul' },
     { id: 2, message: 'Hola perdido', fromUser: 'Pedro' },
   ];
-
+// en este componente va el Link de react-router-dom
+// hacia el componente MessageList
   return (
     <div className='chat-container'>
       <aside className='aside'>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<ContactList user={user} messages={messages}/>} />
-          </Routes>
-        </BrowserRouter>
+        <ContactList user={user} messages={messages}/>
       </aside>
       <main className='main'>
         <ChatArea user={user} messages={messages}/>
