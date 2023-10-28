@@ -21,7 +21,8 @@ export function ChatArea (props){
           <h2>Chat Area:</h2>
           <section className='section-messages'>
             <Routes>
-              <Route path='/:item' element={<MessageList userchat={item} />} />
+              <Route path='/' element={<p>Hola</p>} />
+              <Route path='/chat/:userChat' element={<MessageList />} />
             </Routes>
           </section>
           <MessageInput />

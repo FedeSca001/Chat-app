@@ -20,7 +20,7 @@ export function ContactList(props) {
       <ul className='contact-list-contacts'>
         {list.map((item, index) => (
           <li key={index} className='contact'>
-            <Link to={`/${item}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/chat/${item}`} style={{ textDecoration: 'none' }}>
               <ContactItem dato={item} />
             </Link>
           </li>
