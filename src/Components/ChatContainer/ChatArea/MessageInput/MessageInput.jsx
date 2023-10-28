@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MessageInput.css';
 import { newMessage } from '../../../../Logic/Storage/storage';
 

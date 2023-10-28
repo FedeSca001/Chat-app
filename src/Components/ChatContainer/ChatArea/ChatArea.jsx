@@ -1,26 +1,30 @@
 import './ChatArea.css'
 import { MessageInput } from './MessageInput/MessageInput'
 import { MessageList } from './MessageList/MessageList'
-import { getMessages } from '../../../Logic/Storage/storage'
 import { useEffect, useState } from 'react'
 import './ChatArea.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 
 export function ChatArea (props){
-    const { user, messages } = props;
+    const {item} = useParams()
+
+    /*const { user, messages } = props;
+    console.log(user, messages);/*
     const [msg,setMsg] = useState([])
     useEffect(()=>{
         getMessages ?
         setMsg(getMessages) :
         setMsg([])
-    },[])
-    return(
+    },[])*/
+    return (
         <>
-            <h2>Chat Area:</h2>
+          <h2>Chat Area:</h2>
+          <section className='section-messages'>
             <Routes>
-                <Route path='/:userchat' element={<MessageList/>}/>
+              <Route path='/:item' element={<MessageList userchat={item} />} />
             </Routes>
-            <MessageInput/>
+          </section>
+          <MessageInput />
         </>
-    )
+      );
 }

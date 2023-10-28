@@ -1,8 +1,13 @@
-import { useParams } from 'react-router-dom'
-import './MessageList.css'
-export function MessageList (){
-    const {userchat} = useParams
-    return(
-        <p>MessageList: recibe el chat y lo renderiza {userchat}</p>
-    )
+import React from 'react';
+import './MessageList.css';
+
+export function MessageList(props) {
+  const { item } = props;
+
+  return (
+    <div>
+      <p>MessageList: recibe el chat y lo renderiza</p>
+      <h3>{item}</h3>
+    </div>
+  );
 }

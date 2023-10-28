@@ -13,4 +13,9 @@
   .message-input {
     margin-top: auto; /* Coloca MessageInput en la parte inferior */
   }
+
+  .section-messages{
+    height: 60%;
+    overflow: auto;
+  }
   

@@ -1,0 +1,5 @@
+.app-container {
+    height: 100vh; /* 100% de la altura de la ventana */
+    overflow: hidden; /* Opcional: para evitar barras de desplazamiento verticales */
+  }
+  
