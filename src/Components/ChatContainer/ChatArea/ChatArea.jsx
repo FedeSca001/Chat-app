@@ -1,7 +1,7 @@
 import './ChatArea.css'
 import { MessageInput } from './MessageInput/MessageInput'
 import { MessageList } from './MessageList/MessageList'
-import { useEffect, useState } from 'react'
+//import { useEffect, useState } from 'react'
 import './ChatArea.css'
 import { Route, Routes, useParams } from 'react-router-dom'
 

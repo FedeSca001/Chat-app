@@ -6,9 +6,9 @@ import { ContactItem } from './ContactItem/ContactItem';
 
 export function ContactList(props) {
   const { user } = props;
-  const list = [0,1,2,3,4,5,6,7,8,9].map((item) => item.toString()); // Convierte los números en cadenas
+  const list = [0,1,2,3,4,5,6,7,8,9].map((item) => item.toString());
 
-  return (    
+  return (
     <section className="contact-list">
       <div className='header-container'>
         <img className='user-avatar' src='avatar.svg' alt={'avatar-' + user.name} />
@@ -20,7 +20,7 @@ export function ContactList(props) {
       <ul className='contact-list-contacts'>
         {list.map((item, index) => (
           <li key={index} className='contact'>
-            <Link to={`/chat/${item}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/chat/${index}`} style={{ textDecoration: 'none' }}>
               <ContactItem dato={item} />
             </Link>
           </li>
