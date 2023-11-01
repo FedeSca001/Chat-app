@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './MessageInput.css';
-import { newMessage } from '../../../../Logic/Storage/storage';
+import { socket } from '../../../../Logic/socket-io/socket';
 
 export function MessageInput() {
   const [message, setMessage] = useState('');
@@ -17,10 +17,15 @@ export function MessageInput() {
   };
 
   const handleSubmit = (e) => {
+    const objMsg ={
+          id: crypto.randomUUID(),
+          message: message,
+          date: new Date()
+    }
     e.preventDefault();
-    newMessage(message, 1,2)
-    // Aquí puedes manejar el envío del mensaje, por ejemplo, almacenarlo en un estado global o enviarlo al servidor.
-    setMessage(''); // Limpiar el campo de mensaje después de enviarlo.
+    console.log(objMsg);
+    socket.emit('sendMessage',objMsg)
+    setMessage('');
   };
 
   return (
