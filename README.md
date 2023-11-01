@@ -19,3 +19,11 @@ Componentes:
 Logic:
   - Storage
   - User
+
+  Cuerpo de MENSAGE = {
+          id: crypto.randomUUID(),
+          fromUser: fromUser,
+          toUser: toUser,
+          message: message,
+          date: new Date()
+    }
