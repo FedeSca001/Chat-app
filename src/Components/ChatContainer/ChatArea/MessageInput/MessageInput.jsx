@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './MessageInput.css';
 import { newMessage } from '../../../../Logic/Storage/storage';
 
@@ -7,6 +7,13 @@ export function MessageInput() {
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -24,6 +31,7 @@ export function MessageInput() {
           placeholder="Escribe un mensaje..."
           value={message}
           onChange={handleMessageChange}
+          onKeyDown={handleKeyDown}
           rows="3"
         ></textarea>
         <button className="message-button" type="submit">

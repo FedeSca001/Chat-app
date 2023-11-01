@@ -40,4 +40,5 @@ export function newMessage (message,fromUser, toUser ){
         date: new Date()
     }
     localStorage.setItem('messages', JSON.stringify(chat));
+    console.log(chat.message);
 }

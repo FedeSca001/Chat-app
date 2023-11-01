@@ -4,6 +4,9 @@ import { Authentication } from './Components/Authentication/Authentication';
 import { ChatContainer } from './Components/ChatContainer/ChatContainer';
 import { NavBar } from './Components/NavBar/NavBar';
 import { getMessages, getUser } from './Logic/Storage/storage';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:5000')
 
 function App() {
   const [user, setUser] = useState(null);
@@ -17,6 +20,7 @@ function App() {
       message: 'Hola brodi',
       date: new Date()
   }
+
   localStorage.setItem('messages', JSON.stringify(chat));
   const userObj = getUser;
   const msgs = getMessages

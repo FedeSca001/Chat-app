@@ -11,7 +11,7 @@ export function ContactList(props) {
   return (
     <section className="contact-list">
       <div className='header-container'>
-        <img className='user-avatar' src='avatar.svg' alt={'avatar-' + user.name} />
+        <img className='user-avatar' src='/avatar.svg' alt={'avatar-' + user.name} />
         <p className='user-name'>{user.name} {user.lastName}</p>
       </div>
       <div className='body-container'>
