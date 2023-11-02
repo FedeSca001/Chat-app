@@ -4,15 +4,20 @@ import { useParams } from 'react-router-dom';
 import { socket } from '../../../../Logic/socket-io/socket.js';
 
 export function MessageList() {
-  const [chatList, setChatList] = useState([/* aca tiene que buscar en la base de datos todo el chat de la sala */]);
+  const [chatList, setChatList] = useState([/*traigo la lista del localestorage */]);
   const { userChat } = useParams();
 
   useEffect(() => {
-    socket.on('receiveMessage', (message) => {
-      setChatList([...chatList,message]);// aca tiene que pedir los datos a la base de datos
-      //ademas ver con el localeStorage como hace
+    const storedChatList = JSON.parse(localStorage.getItem('chatList') || '[]');
+    setChatList(storedChatList);
+    
+    socket.on('receiveMessage ', (message) => {
+      setChatList(state => [...state,message]);
+      //ahora agrego el mensaje a una lista en el localStorage
+      //localStorage.setItem()
+      localStorage.setItem('chatList', JSON.stringify([...storedChatList, message]));
     });
-  }, []);
+  },[]);
 
   return (
     <div>
