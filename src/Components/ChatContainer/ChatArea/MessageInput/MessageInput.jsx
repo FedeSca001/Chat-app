@@ -25,13 +25,6 @@ export function MessageInput() {
     socket.emit('sendMessage',objMsg)
     setMessage('');
   };
-/*
-  useEffect(() => {
-    socket.on("receiveMessage", ({message}) => console.log(message,', mensaje recibido'))
-    return () => {
-      socket.off("receiveMessage", ({message}) => console.log(message));
-    };
-  }, []);*/
 
   return (
     <div className="message-input">

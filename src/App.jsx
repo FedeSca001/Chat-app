@@ -3,7 +3,7 @@ import './App.css';
 import { Authentication } from './Components/Authentication/Authentication';
 import { ChatContainer } from './Components/ChatContainer/ChatContainer';
 import { NavBar } from './Components/NavBar/NavBar';
-import { getMessages, getUser } from './Logic/Storage/storage';
+import { getMessages } from './Logic/Storage/storage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,11 +19,10 @@ function App() {
   }
 
   localStorage.setItem('messages', JSON.stringify(chat));
-  const userObj = getUser;
+  const userObj = localStorage.getItem('user');
   const msgs = getMessages
   setMesagges([...messages,msgs])
   setUser(userObj)
-
   }, []);
 
   return (

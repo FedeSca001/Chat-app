@@ -1,12 +1,25 @@
 // En ContactList.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ContactList.css';
 import { Link } from 'react-router-dom';
 import { ContactItem } from './ContactItem/ContactItem';
+import axios from 'axios';
 
 export function ContactList(props) {
+  const [list,setList] = useState([0,1,2])
   const { user } = props;
-  const list = [0,1,2,3,4,5,6,7,8,9].map((item) => item.toString());
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get('http://localhost:5000/user/db/allusers');
+        setList(result.data);
+      } catch (error) {
+        alert.error('Error al obtener datos:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section className="contact-list">

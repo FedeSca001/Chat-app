@@ -1,24 +1,52 @@
 import React, { useState } from 'react';
 import './CreateUser.css'
-import { newUser } from '../../../Logic/Storage/storage';
+import axios from 'axios';
 
 export function CreateUser() {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [age, setAge] = useState('');
 
-  const handleRegistration = () => {
-    // Aquí puedes agregar la lógica de registro, como enviar los datos al servidor.
-    // Por ahora, solo mostraremos los datos ingresados.
-    newUser(name,lastName,password,email,age)
-  }
+  const handleRegistration = async (e) => {
+    e.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
+
+    try {
+      const bodypost = {
+        "nombre_usuario": userName,
+        "nombre": name,
+        "apellido": lastName,
+        "img_perfil": "https://img.freepik.com/vector-premium/icono-perfil-avatar_188544-4755.jpg",
+        "acerca_del_usuario": "Soy un usuario de Cat App <3",
+        "password": password,
+        "fecha_nacimiento": "1989-12-31T23:00:00.000Z",
+        "mail": email
+      };
+      const addUserResponse = await axios.post('http://localhost:5000/user/db', bodypost);
+
+      // Agregar usuario al localStorage si la petición fue exitosa
+      localStorage.setItem('user', JSON.stringify(addUserResponse.data));
+      window.location.reload();
+    } catch (error) {
+      alert(error);
+    }
+    // Otras acciones después de enviar el formulario
+  };
+
 
   return (
     <div className="create-user-container">
       <h2>Registro de Usuario</h2>
-      <form>
+      <form onSubmit={handleRegistration}>
+        <div className="form-group">
+          <label>Usuario</label>
+          <input
+            type="text"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
         <div className="form-group">
           <label>Nombre</label>
           <input
@@ -51,15 +79,7 @@ export function CreateUser() {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="form-group">
-          <label>Edad</label>
-          <input
-            type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          />
-        </div>
-        <button onClick={handleRegistration}>Registrar</button>
+        <button type="submit">Registrar</button>
       </form>
     </div>
   );
