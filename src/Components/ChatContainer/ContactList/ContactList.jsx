@@ -10,7 +10,7 @@ export function ContactList(props) {
   
   const fetchData = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/user/db/allusers');
+      const result = await axios.get(`http://localhost:5000/room/db/${user.id_usuario}`);
       setList(result.data.filter(item => item.id_usuario !== user.id_usuario));
     } catch (error) {
       alert.error('Error al obtener datos:', error);
@@ -30,7 +30,7 @@ export function ContactList(props) {
       <ul className='contact-list-contacts'>
         {list.map((item, index) => (
           <li key={index} className='contact'>
-            <Link to={`/chat/${index}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/chat/${item.nombre}`} style={{ textDecoration: 'none' }}>
               <ContactItem dato={item} />
             </Link>
           </li>

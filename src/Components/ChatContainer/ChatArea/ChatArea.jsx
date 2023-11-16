@@ -8,11 +8,10 @@ export function ChatArea (){
 
     return (
         <>
-          <h2>Chat Area:</h2>
           <section className='section-messages'>
             <Routes>
               <Route path='/' element={<p>Hola</p>} />
-              <Route path='/chat/:userChat' element={<MessageList />} />
+              <Route path="/chat/:userChat" element={<MessageList />} />
             </Routes>
           </section>
           <MessageInput />

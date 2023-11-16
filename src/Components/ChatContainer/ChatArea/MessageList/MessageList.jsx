@@ -6,15 +6,12 @@ import { socket } from '../../../../Logic/socket-io/socket.js';
 export function MessageList() {
   const [chatList, setChatList] = useState([/*traigo la lista del localestorage */]);
   const { userChat } = useParams();
-
   useEffect(() => {
     const storedChatList = JSON.parse(localStorage.getItem('chatList') || '[]');
     setChatList(storedChatList);
     
     socket.on('receiveMessage ', (message) => {
       setChatList(state => [...state,message]);
-      //ahora agrego el mensaje a una lista en el localStorage
-      //localStorage.setItem()
       localStorage.setItem('chatList', JSON.stringify([...storedChatList, message]));
     });
   },[]);

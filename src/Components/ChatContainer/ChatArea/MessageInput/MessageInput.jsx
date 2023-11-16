@@ -23,8 +23,9 @@ export function MessageInput() {
       from_user: JSON.parse(localStorage.getItem('user')).id_usuario
     }
     e.preventDefault();
+    console.log(objMsg);
     try {
-      await axios.post('http://localhost:5000/user/db/nuevo-mensaje', objMsg)
+      await axios.post('http://localhost:5000/msg/db/nuevo-mensaje', objMsg)
     } catch (error) {
       alert(error)
     }
