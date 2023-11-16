@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './MessageInput.css';
 import { socket } from '../../../../Logic/socket-io/socket';
+import axios from 'axios';
 
 export function MessageInput() {
   const [message, setMessage] = useState('');
@@ -15,13 +16,18 @@ export function MessageInput() {
       handleSubmit(e);
     }
   };
-    const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     const objMsg ={
-          id: crypto.randomUUID(),
-          message: message,
-          date: new Date()
+      tipo_mensaje: 'text',
+      valor_mensaje: message,
+      from_user: JSON.parse(localStorage.getItem('user')).id_usuario
     }
     e.preventDefault();
+    try {
+      await axios.post('http://localhost:5000/user/db/nuevo-mensaje', objMsg)
+    } catch (error) {
+      alert(error)
+    }
     socket.emit('sendMessage',objMsg)
     setMessage('');
   };

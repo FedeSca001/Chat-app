@@ -11,7 +11,7 @@ export function ChatContainer(props) {
         <ContactList user={user} messages={messages}/>
       </aside>
       <main className='main'>
-        <ChatArea user={user} messages={messages}/>
+        <ChatArea />
       </main>
     </div>
   );

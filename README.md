@@ -30,7 +30,7 @@ Base de datos SQL:
 -"nombre"                     <-----"id_userA"   foranea      - "valor_mensaje"
 -"apellido"                   <-----"id_userB"   foranea      - "fecha_y_hora"
 -"img_perfil"                      -                          - "tipo_mensaje"
--"acerca_del_usuario"              -                          -
+-"acerca_del_usuario"              -                          - "from_user"
 -"password"                        -                          -
 -"fecha_nacimiento"                -                          -
 -"mail"                            -                          -
@@ -57,8 +57,9 @@ Estructura de la Base de Datos SQL:
     id_mensaje (Autoincremental, Clave Primaria)
     id_sala (Clave Foránea a Salas)
     tipo_mensaje
-    valor
+    valor_mensaje
     fecha_y_hora
+    from_user
     
 Notas Adicionales:
 La tabla "Usuarios" almacena información sobre los usuarios.
