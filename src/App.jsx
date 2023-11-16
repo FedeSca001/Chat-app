@@ -19,7 +19,7 @@ function App() {
   }
 
   localStorage.setItem('messages', JSON.stringify(chat));
-  const userObj = localStorage.getItem('user');
+  const userObj = JSON.parse(localStorage.getItem('user'));
   const msgs = getMessages
   setMesagges([...messages,msgs])
   setUser(userObj)

@@ -1,9 +1,8 @@
-import { deleteUser } from '../../Logic/Storage/storage';
 import './NavBar.css';
 
 export function NavBar() {
   const handleLogout = () => {
-    deleteUser(); // Llamas a la función para eliminar datos de la sesión
+    localStorage.removeItem('user');
     window.location.reload(); // Recargas la página
   };
 
