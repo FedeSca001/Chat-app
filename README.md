@@ -65,3 +65,20 @@ Notas Adicionales:
 La tabla "Usuarios" almacena información sobre los usuarios.
 La tabla "Salas" maneja la relación entre usuarios y mensajes, indicando qué usuarios están en qué salas.
 La tabla "Mensajes" almacena los mensajes enviados en cada sala.
+
+Rutas (end points):
+  - Usuarios:
+      OBTENER USUARIO CON SU USUARIO Y PASSWORD....../user/db/:usuario/:password         "GET"
+      OBTENER UN USUARIO CON SU ID_USUARIO ........../user/db/:id_usuario                "GET"
+      OBTENER TODOS LOS USUARIOS           ........../user/db/allusers                   "GET"
+      AGREGAR USUARIOS                     ..../user/db                                  "POST"
+          body:{ nombre_usuario, nombre, apellido, img_perfil, acerca_del_usuario, password, fecha_nacimiento, mail }
+
+  - Salas:
+      OBTENER TODAS LAS SALAS                             ....../room/db                  "GET"
+      OBTENER CONTACTOS DE LAS SALAS DEL USUARIO LOGUEADO ....../room/db/:id_usuario      "GET"
+
+  - Mensajes:
+    OBTENER TODOS LOS MENSAJES             ........../msg/db/mensajes                     "GET"
+    CREAR UN MENSAJE                       ........../msg/db/nuevo-mensaje                "POST"
+          body:{ tipo_mensaje, valor_mensaje, from_user, id_sala }
