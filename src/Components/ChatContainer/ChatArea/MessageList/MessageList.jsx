@@ -24,7 +24,6 @@ export function MessageList(props) {
     }
   };
 
-  // Función para obtener la lista de mensajes de la conversación
   const fetchMensajes = async () => {
     try {
       // Obtener la lista de mensajes desde la API

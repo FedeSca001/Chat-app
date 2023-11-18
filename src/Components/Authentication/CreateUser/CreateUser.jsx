@@ -24,10 +24,11 @@ export function CreateUser() {
         "mail": email
       };
       const addUserResponse = await axios.post('http://localhost:5000/user/db', bodypost);
-
-      // Agregar usuario al localStorage si la petición fue exitosa
-      localStorage.setItem('user', JSON.stringify(addUserResponse.data));
-      window.location.reload();
+      if(addUserResponse.status  === 200 ){
+        const getUserLogued = await axios.get(`http://localhost:5000/user/db/${userName}/${password}`)
+        localStorage.setItem('user', JSON.stringify(getUserLogued.data));
+        window.location.reload();
+      }
     } catch (error) {
       alert(error);
     }
