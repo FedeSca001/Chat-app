@@ -28,7 +28,7 @@ export function ContactItem(props) {
       </div>
       <div className="contact-info">
         <h3 className='contact-info-name'>{contacto.nombre} {contacto.apellido}</h3>
-        <p className='contact-info-p'>Última vez en línea: hace 2 horas</p>
+        <p className='contact-info-p'>{contacto.mail}</p>
       </div>
     </div>
   );

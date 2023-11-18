@@ -20,10 +20,10 @@ export function MessageInput() {
     const objMsg ={
       tipo_mensaje: 'text',
       valor_mensaje: message,
-      from_user: JSON.parse(localStorage.getItem('user')).id_usuario
+      from_user: JSON.parse(localStorage.getItem('user')).id_usuario,
+      id_sala: JSON.parse(localStorage.getItem('id_sala'))
     }
     e.preventDefault();
-    console.log(objMsg);
     try {
       await axios.post('http://localhost:5000/msg/db/nuevo-mensaje', objMsg)
     } catch (error) {

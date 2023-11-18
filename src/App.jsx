@@ -10,15 +10,6 @@ function App() {
   const [messages,setMesagges] = useState([])
 
   useEffect(() => {
-    const chat = {
-      id: crypto.randomUUID(),
-      fromUser: 'Pedro',
-      toUser: 'Pablo',
-      message: 'Hola brodi',
-      date: new Date()
-  }
-
-  localStorage.setItem('messages', JSON.stringify(chat));
   const userObj = JSON.parse(localStorage.getItem('user'));
   const msgs = getMessages
   setMesagges([...messages,msgs])

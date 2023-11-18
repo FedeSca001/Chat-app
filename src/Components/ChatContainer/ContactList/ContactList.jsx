@@ -12,13 +12,7 @@ export function ContactList(props) {
     try {
       const result = await axios.get(`http://localhost:5000/room/db/${user.id_usuario}`);
       
-      // Eliminar elementos duplicados basados en el id_usera o id_userb
-      const uniqueList = result.data.filter(
-        (item, index, self) =>
-          index === self.findIndex((t) => t.id_usera === item.id_usera || t.id_userb === item.id_userb)
-      );
-
-      setList(uniqueList);
+      setList(result.data);
     } catch (error) {
       alert.error('Error al obtener datos:', error);
     }
