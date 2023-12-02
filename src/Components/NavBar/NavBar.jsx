@@ -8,7 +8,6 @@ export function NavBar() {
 
   return (
     <nav className='nav-bar'>
-      Este es el nav
       <div className='buttons'>
         <button className='btn-nav'>
           <img src="/notifications.svg" alt="Notifications" />
