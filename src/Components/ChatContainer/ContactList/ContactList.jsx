@@ -27,6 +27,7 @@ export function ContactList(props) {
     fetchContactos()
   };
 
+  
   const fetchContactos = async () => {
     try {
       if (buscar.trim() !== '') {

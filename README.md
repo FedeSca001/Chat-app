@@ -20,6 +20,7 @@ Logic:
   - Storage
   - User
 
+<<<<<<< HEAD
 Base de datos SQL:
 
     ----------                      --------                  ----------
@@ -35,6 +36,8 @@ Base de datos SQL:
 -"fecha_nacimiento"                -                          -
 -"mail"                            -                          -
 
+=======
+>>>>>>> 6336d95206266302ad9914b802a802b6255b2372
 Estructura de la Base de Datos SQL:
 - Usuarios:
     id_usuario (Autoincremental, Clave Primaria)
@@ -81,4 +84,8 @@ Rutas (end points):
   - Mensajes:
     OBTENER TODOS LOS MENSAJES             ........../msg/db/mensajes                     "GET"
     CREAR UN MENSAJE                       ........../msg/db/nuevo-mensaje                "POST"
+<<<<<<< HEAD
           body:{ tipo_mensaje, valor_mensaje, from_user, id_sala }
+=======
+          body:{ tipo_mensaje, valor_mensaje, from_user, id_sala }
+>>>>>>> 6336d95206266302ad9914b802a802b6255b2372
