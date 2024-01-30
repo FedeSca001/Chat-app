@@ -3,7 +3,7 @@ import './ChatContainer.css';
 import { ContactList } from './ContactList/ContactList';
 
 export function ChatContainer(props) {
-  const { user } = props;
+  const { user } = props; 
 
 // hacia el componente MessageList
   return (
