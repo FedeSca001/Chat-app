@@ -1,21 +1,25 @@
 /* ChatArea.css */
 .chat-area {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .message-list {
-    flex: 1; /* Ocupará el espacio restante */
-    overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
-  }
-  
-  .message-input {
-    margin-top: auto; /* Coloca MessageInput en la parte inferior */
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-  .section-messages{
-    height: 60%;
-    overflow: auto;
-  }
-  
+.section-messages {
+  height: 60%;
+  overflow: auto;
+}
+
+.welcome-message {
+  text-align: center; /* Centro el texto horizontalmente */
+  margin-top: auto; /* Centra el texto verticalmente usando margen superior automático */
+}
+
+.message-list {
+  flex: 1; /* Ocupará el espacio restante */
+  overflow-y: auto; /* Agregar desplazamiento vertical si es necesario */
+}
+
+.message-input {
+  margin-top: auto; /* Coloca MessageInput en la parte inferior */
+}

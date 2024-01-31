@@ -3,20 +3,27 @@ import './Login.css'
 import axios from 'axios';
 
 export function Login() {
+  // Estados para el nombre de usuario y la contraseña
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
+  // Función para manejar el inicio de sesión
   const handleLogin = async (e) => {
     e.preventDefault();
-    try { // ElMacho  machomaaan
-      let getAuth = false
-      getAuth = await axios.get(`http://localhost:5000/user/db/${userName}/${password}`)
+    try {
+      // Variable para verificar la autenticación
+      let getAuth = false;
+
+      // Realiza una solicitud para verificar las credenciales del usuario
+      getAuth = await axios.get(`http://localhost:5000/user/db/${userName}/${password}`);
+
+      // Si la autenticación es exitosa, guarda la información del usuario en el almacenamiento local y recarga la página
       if (getAuth) {
         localStorage.setItem('user', JSON.stringify(getAuth.data));
         window.location.reload();
       }
     } catch (error) {
-      alert(error)
+      alert(error);
     }
   }
 
@@ -45,5 +52,3 @@ export function Login() {
     </div>
   );
 }
-
-export default Login;

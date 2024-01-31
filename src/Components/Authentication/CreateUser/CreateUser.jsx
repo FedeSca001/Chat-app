@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import './CreateUser.css'
+import './CreateUser.css';
 import axios from 'axios';
 
 export function CreateUser() {
+  // Estados para los campos del formulario de registro
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
 
+  // Función para manejar el registro de usuario
   const handleRegistration = async (e) => {
     e.preventDefault(); // Evitar que el formulario se envíe de forma predeterminada
 
     try {
+      // Objeto que representa los datos del nuevo usuario
       const bodypost = {
         "nombre_usuario": userName,
         "nombre": name,
@@ -23,9 +26,15 @@ export function CreateUser() {
         "fecha_nacimiento": "1989-12-31T23:00:00.000Z",
         "mail": email
       };
+
+      // Realiza una solicitud para agregar el nuevo usuario a la base de datos
       const addUserResponse = await axios.post('http://localhost:5000/user/db', bodypost);
-      if(addUserResponse.status  === 200 ){
-        const getUserLogued = await axios.get(`http://localhost:5000/user/db/${userName}/${password}`)
+
+      // Si la adición del usuario es exitosa, realiza una solicitud para obtener el usuario recién registrado
+      if (addUserResponse.status === 200) {
+        const getUserLogued = await axios.get(`http://localhost:5000/user/db/${userName}/${password}`);
+        
+        // Guarda la información del usuario en el almacenamiento local y recarga la página
         localStorage.setItem('user', JSON.stringify(getUserLogued.data));
         window.location.reload();
       }
@@ -34,7 +43,6 @@ export function CreateUser() {
     }
     // Otras acciones después de enviar el formulario
   };
-
 
   return (
     <div className="create-user-container">
@@ -85,5 +93,3 @@ export function CreateUser() {
     </div>
   );
 }
-
-export default CreateUser;

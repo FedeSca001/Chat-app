@@ -15,7 +15,7 @@ export function MessageList(props) {
   const fetchSala = async () => {
     try {
       // Obtener la información de la sala desde la API
-      const result = await axios.get(`http://localhost:5000/room/db/salas/${userChat}`);
+      const result = await axios.get(`http://localhost:5000/room/db/${userChat}`);
       const iduserB = result.data[0].id_usera === user.id_usuario ? result.data[0].id_userb : user.id_usuario
       const asignarUsuario = await axios.get(`http://localhost:5000/user/db/${iduserB}`)
       setUserB(asignarUsuario.data)
@@ -54,7 +54,7 @@ export function MessageList(props) {
 
   return (
     <div className="message-container">
-      <h3>Bienvenido al chat con {userB.nombre} {userB.apellido}</h3>
+      <h3>Bienvenido al chat con </h3>
       {chatList.map((chat, index) => (
         <div
           key={index}

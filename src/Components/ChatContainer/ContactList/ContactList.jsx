@@ -11,7 +11,7 @@ export function ContactList(props) {
 
   const fetchData = async () => {
     try {
-      const result = await axios.get(`http://localhost:5000/room/db/${user.id_usuario}`);
+      const result = await axios.get(`http://localhost:5000/user/db/`);
       setList(result.data);
     } catch (error) {
       console.error('Error al obtener datos:', error);
@@ -34,7 +34,6 @@ export function ContactList(props) {
         const result = await axios.get(`http://localhost:5000/user/db/obtener/usuario/${buscar}`);
         if (result.data) {
           setList(result.data);
-          console.log(result.data);
         }
       }
     } catch (error) {
@@ -57,18 +56,20 @@ export function ContactList(props) {
           className='contact-list-buscador'
         />
       </div>
-
       <ul className='contact-list-contacts'>
-        {list.map((item, index) => (
-          <li key={index} className='contact'>
-            <Link to={`/chat/${item.id_sala}`} style={{ textDecoration: 'none' }}>
-              <ContactItem
-                dato={item.id_usera === user.id_usuario ? item.id_userb : item.id_usera}
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
+  {list.map((item, index) => (
+    // Verifica que user.id no sea igual a item.id antes de mostrar el componente
+    user.id_usuario !== item.id_usuario && (
+      <li key={index} className='contact'>
+        <Link to={`/chat/${item.id_usuario}`} style={{ textDecoration: 'none' }}>
+          <ContactItem
+            dato={item}
+          />
+        </Link>
+      </li>
+    )
+  ))}
+</ul>
     </section>
   );
 }

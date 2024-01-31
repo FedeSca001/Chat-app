@@ -2,6 +2,7 @@ import './NavBar.css';
 
 export function NavBar() {
   const handleLogout = () => {
+    // cerrar sesion
     localStorage.removeItem('user');
     window.location.reload(); // Recargas la página
   };

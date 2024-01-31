@@ -4,6 +4,7 @@ import { CreateUser } from './CreateUser/CreateUser';
 import { Login } from './Login/Login';
 
 export function Authentication() {
+  // Estado para alternar entre las pestañas de crear usuario e iniciar sesión
   const [switchTab, setSwitchTab] = useState(false);
 
   return (
