@@ -4,6 +4,7 @@ import './MessageList.css';
 import { useParams } from 'react-router-dom';
 import { socket } from '../../../../Logic/socket-io/socket.js';
 import axios from 'axios';
+import { MessageInput } from '../MessageInput/MessageInput.jsx';
 
 export function MessageList(props) {
   const [chatList, setChatList] = useState([]);
@@ -12,22 +13,11 @@ export function MessageList(props) {
   // Obtener el usuario actual de las props
   const { user } = props;
 
-  const fetchSala = async () => {
-    try {
-      // Obtener la información de la sala desde la API
-      const result = await axios.get(`http://localhost:5000/room/db/${userChat}`);
-      const iduserB = result.data[0].id_usera === user.id_usuario ? result.data[0].id_userb : user.id_usuario
-      const asignarUsuario = await axios.get(`http://localhost:5000/user/db/${iduserB}`)
-      setUserB(asignarUsuario.data)
-    } catch (error) {
-      console.error('Error al obtener datos de la sala:', error);
-    }
-  };
 
   const fetchMensajes = async () => {
     try {
-      // Obtener la lista de mensajes desde la API
-      const result = await axios.get(`http://localhost:5000/msg/db/${userChat}`);
+      // Obtener la lista de mensajes desde la API a traves de la ID de la sala
+      const result = await axios.get(`http://localhost:5000/msg/db/${sessionStorage.getItem('id_sala')}`);
       setChatList(result.data);
     } catch (error) {
       console.error('Error al obtener mensajes:', error);
@@ -39,12 +29,20 @@ export function MessageList(props) {
       // Actualizar el almacenamiento local con el nuevo mensaje
     });
   };
+  const fetchUserB = async()=>{
+    try {
+      const getUserB = await axios.get(`http://localhost:5000/user/db/${userChat}`)
+      setUserB(getUserB.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   // Efecto para cargar la lista de mensajes y la información del otro usuario al montar el componente
   useEffect(() => {
     localStorage.setItem('id_sala', userChat);
     fetchMensajes();
-    fetchSala();
+    fetchUserB()
     // Limpiar el listener cuando el componente se desmonta
     return () => {
       localStorage.removeItem('id_sala');
@@ -65,6 +63,7 @@ export function MessageList(props) {
           <p>{chat.valor_mensaje}</p>
         </div>
       ))}
+      <MessageInput/>
     </div>
   );
 }

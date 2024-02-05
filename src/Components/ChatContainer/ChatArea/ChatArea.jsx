@@ -1,5 +1,4 @@
 import './ChatArea.css';
-import { MessageInput } from './MessageInput/MessageInput';
 import { MessageList } from './MessageList/MessageList';
 import { Route, Routes } from 'react-router-dom';
 
@@ -14,7 +13,6 @@ export function ChatArea(props) {
           <Route path="/chat/:userChat" element={<MessageList user={user} />} />
         </Routes>
       </section>
-      <MessageInput />
     </div>
   );
 }

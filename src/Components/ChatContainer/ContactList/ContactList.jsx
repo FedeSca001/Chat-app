@@ -64,6 +64,7 @@ export function ContactList(props) {
         <Link to={`/chat/${item.id_usuario}`} style={{ textDecoration: 'none' }}>
           <ContactItem
             dato={item}
+            userA ={user}
           />
         </Link>
       </li>
