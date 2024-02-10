@@ -19,6 +19,7 @@ export function MessageList(props) {
       // Obtener la lista de mensajes desde la API a traves de la ID de la sala
       const result = await axios.get(`http://localhost:5000/msg/db/${sessionStorage.getItem('id_sala')}`);
       setChatList(result.data);
+      //console.log(sessionStorage.getItem('id_sala'));
     } catch (error) {
       console.error('Error al obtener mensajes:', error);
     }
@@ -31,8 +32,9 @@ export function MessageList(props) {
   };
   const fetchUserB = async()=>{
     try {
-      const getUserB = await axios.get(`http://localhost:5000/user/db/${userChat}`)
+      const getUserB = await axios.get(`http://localhost:5000/user/db/usuario/id/${userChat}`)
       setUserB(getUserB.data);
+      console.log(userB);
     } catch (error) {
       console.error(error);
     }

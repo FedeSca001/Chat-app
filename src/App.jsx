@@ -3,16 +3,12 @@ import './App.css';
 import { Authentication } from './Components/Authentication/Authentication';
 import { ChatContainer } from './Components/ChatContainer/ChatContainer';
 import { NavBar } from './Components/NavBar/NavBar';
-import { getMessages } from './Logic/Storage/storage';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [messages,setMesagges] = useState([])
 
   useEffect(() => {
   const userObj = JSON.parse(localStorage.getItem('user'));
-  const msgs = getMessages
-  setMesagges([...messages,msgs])
   setUser(userObj)
   }, []);
 
@@ -21,7 +17,7 @@ function App() {
       {user ? (
         <>
           <NavBar />
-          <ChatContainer user={user} messages={messages} />
+          <ChatContainer user={user}  />
         </>
       ) : (
         <Authentication />
