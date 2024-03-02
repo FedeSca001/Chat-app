@@ -9,6 +9,7 @@ import { MessageInput } from '../MessageInput/MessageInput.jsx';
 export function MessageList(props) {
   const [chatList, setChatList] = useState([]);
   const [userB, setUserB] = useState({});
+  const [sala, setSala] = useState(0)
   const { userChat } = useParams();
   // Obtener el usuario actual de las props
   const { user } = props;
@@ -19,7 +20,6 @@ export function MessageList(props) {
       // Obtener la lista de mensajes desde la API a traves de la ID de la sala
       const result = await axios.get(`http://localhost:5000/msg/db/${sessionStorage.getItem('id_sala')}`);
       setChatList(result.data);
-      //console.log(sessionStorage.getItem('id_sala'));
     } catch (error) {
       console.error('Error al obtener mensajes:', error);
     }
@@ -34,17 +34,39 @@ export function MessageList(props) {
     try {
       const getUserB = await axios.get(`http://localhost:5000/user/db/usuario/id/${userChat}`)
       setUserB(getUserB.data);
-      console.log(userB);
     } catch (error) {
       console.error(error);
     }
   }
 
+  const fetchRoom = async () => {
+    try {
+      const getRoom = await axios.get(`http://localhost:5000/room/db/${user._id}/${userB._id}`);
+      // Verifica si hay datos devueltos y si hay al menos un elemento en los datos
+      if (getRoom.data[0] && getRoom.data.length > 0) {
+        // Si hay datos y al menos un elemento, establece la sala con el ID del primer elemento
+        setSala(getRoom.data[0]);
+      } else {
+        // Si no hay datos o los datos están vacíos, crea una nueva sala
+        const newRoom = await axios.post(`http://localhost:5000/room/db/nueva-sala`, {
+          id_usera: user.id_usuario,
+          id_userb: userB.id_usuario
+        });
+        // Establece la sala con el ID de la nueva sala creada
+        if (newRoom.data) setSala(newRoom.data[0]);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  
+
   // Efecto para cargar la lista de mensajes y la información del otro usuario al montar el componente
   useEffect(() => {
-    localStorage.setItem('id_sala', userChat);
     fetchMensajes();
     fetchUserB()
+    fetchRoom()
     // Limpiar el listener cuando el componente se desmonta
     return () => {
       localStorage.removeItem('id_sala');
@@ -54,7 +76,7 @@ export function MessageList(props) {
 
   return (
     <div className="message-container">
-      <h3>Bienvenido al chat con </h3>
+      <h3>Bienvenido al chat con {userB.nombre}</h3>
       {chatList.map((chat, index) => (
         <div
           key={index}
@@ -65,7 +87,7 @@ export function MessageList(props) {
           <p>{chat.valor_mensaje}</p>
         </div>
       ))}
-      <MessageInput/>
+      <MessageInput user={user} sala={sala}/>
     </div>
   );
 }

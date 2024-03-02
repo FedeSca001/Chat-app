@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './MessageInput.css';
 import { socket } from '../../../../Logic/socket-io/socket';
 import axios from 'axios';
 
-export function MessageInput() {
+export function MessageInput(props) {
   const [message, setMessage] = useState('');
-
+  const { user, sala } = props
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
-
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -20,8 +19,8 @@ export function MessageInput() {
     const objMsg ={
       tipo_mensaje: 'text',
       valor_mensaje: message,
-      from_user: JSON.parse(localStorage.getItem('user')).id_usuario,
-      id_sala: JSON.parse(localStorage.getItem('id_sala'))
+      from_user: user.id_usuario,
+      id_sala: sala._id
     }
     e.preventDefault();
     try {
