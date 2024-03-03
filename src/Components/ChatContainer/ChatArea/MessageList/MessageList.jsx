@@ -14,11 +14,11 @@ export function MessageList(props) {
   // Obtener el usuario actual de las props
   const { user } = props;
 
-
   const fetchMensajes = async () => {
     try {
       // Obtener la lista de mensajes desde la API a traves de la ID de la sala
-      const result = await axios.get(`http://localhost:5000/msg/db/${sessionStorage.getItem('id_sala')}`);
+      const result = await axios.get(`http://localhost:5000/msg/db/${sala._id}`);
+      console.log(result.data);
       setChatList(result.data);
     } catch (error) {
       console.error('Error al obtener mensajes:', error);
@@ -46,6 +46,8 @@ export function MessageList(props) {
       if (getRoom.data[0] && getRoom.data.length > 0) {
         // Si hay datos y al menos un elemento, establece la sala con el ID del primer elemento
         setSala(getRoom.data[0]);
+        console.log(sala._id);
+        fetchMensajes();
       } else {
         // Si no hay datos o los datos están vacíos, crea una nueva sala
         const newRoom = await axios.post(`http://localhost:5000/room/db/nueva-sala`, {
@@ -64,7 +66,6 @@ export function MessageList(props) {
 
   // Efecto para cargar la lista de mensajes y la información del otro usuario al montar el componente
   useEffect(() => {
-    fetchMensajes();
     fetchUserB()
     fetchRoom()
     // Limpiar el listener cuando el componente se desmonta
@@ -81,7 +82,7 @@ export function MessageList(props) {
         <div
           key={index}
           // Aplicar estilos y alineación según el remitente del mensaje
-          className={Number(chat.from_user) !== user.id_usuario ? 'sent-message' : 'received-message'}
+          className={Number(chat.from_user) !== user.id_usuario ? 'received-message' : 'sent-message'}
           style={{ alignSelf: Number(chat.from_user) !== user.id_usuario ? 'flex-end' : 'flex-start' }}>
           <h5>{Number(chat.from_user) !== user.id_usuario ? userB.nombre : user.nombre}</h5>
           <p>{chat.valor_mensaje}</p>
