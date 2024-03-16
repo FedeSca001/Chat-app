@@ -7,18 +7,18 @@ const { dato,userA } = props;
 const fetchRoom = async () => {
   try {
     // Busca una sala donde estén los dos usuarios
-    const result = await axios.get(`http://localhost:5000/room/db/${userA._id}/${dato._id}`);
+    const result = await axios.get(`http://localhost:5000/room/db/${userA.id_usuario}/${dato.id_usuario}`);
     if (result.data.length > 0) {
       // Si la encuentra, setea el sessionStorage con el id de la sala
       const salaEncontrada = result.data[0];
       sessionStorage.setItem('id_sala', salaEncontrada.id_sala);
     } else {
       // Crea la sala para estos dos usuarios
-      const body = { "id_usera": userA._id, "id_userb": dato._id };
+      const body = { "id_usera": userA.id_usuario, "id_userb": dato.id_usuario };
       const newRoom = await axios.post(`http://localhost:5000/room/db/nueva-sala`, body);
 
       // Obtén la sala recién creada
-      const room = await axios.get(`http://localhost:5000/room/db/${userA._id}/${dato._id}`);
+      const room = await axios.get(`http://localhost:5000/room/db/${userA.id_usuario}/${dato.id_usuario}`);
       
       // Setea el sessionStorage con el id de la sala recién creada
       const salaCreada = room.data[0];

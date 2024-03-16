@@ -13,6 +13,7 @@ export function ContactList(props) {
     try {
       const result = await axios.get(`http://localhost:5000/user/db/usuarios`);
       setList(result.data);
+      console.log(list);
     } catch (error) {
       console.error('Error al obtener datos:', error);
     }
@@ -59,9 +60,9 @@ export function ContactList(props) {
       <ul className='contact-list-contacts'>
   {list.map((item, index) => (
     // Verifica que user.id no sea igual a item.id antes de mostrar el componente
-    user._id !== item._id && (
+    user.id_usuario !== item.id_usuario && (
       <li key={index} className='contact'>
-        <Link to={`/chat/${item._id}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/chat/${item.id_usuario}`} style={{ textDecoration: 'none' }}>
           <ContactItem
             dato={item}
             userA ={user}

@@ -19,8 +19,8 @@ export function MessageInput(props) {
     const objMsg ={
       tipo_mensaje: 'text',
       valor_mensaje: message,
-      from_user: user._id,
-      id_sala: sala._id
+      from_user: user.id_usuario,
+      id_sala: sala.id_usuario
     }
     e.preventDefault();
     try {

@@ -17,7 +17,7 @@ export function MessageList(props) {
   const fetchMensajes = async () => {
     try {
       // Obtener la lista de mensajes desde la API a traves de la ID de la sala
-      const result = await axios.get(`http://localhost:5000/msg/db/${sala._id}`);
+      const result = await axios.get(`http://localhost:5000/msg/db/${sala.id_usuario}`);
       console.log(result.data);
       setChatList(result.data);
     } catch (error) {
@@ -41,12 +41,12 @@ export function MessageList(props) {
 
   const fetchRoom = async () => {
     try {
-      const getRoom = await axios.get(`http://localhost:5000/room/db/${user._id}/${userB._id}`);
+      const getRoom = await axios.get(`http://localhost:5000/room/db/${user.id_usuario}/${userB.id_usuario}`);
       // Verifica si hay datos devueltos y si hay al menos un elemento en los datos
       if (getRoom.data[0] && getRoom.data.length > 0) {
         // Si hay datos y al menos un elemento, establece la sala con el ID del primer elemento
         setSala(getRoom.data[0]);
-        console.log(sala._id);
+        console.log(sala.id_usuario);
         fetchMensajes();
       } else {
         // Si no hay datos o los datos están vacíos, crea una nueva sala
