@@ -1,4 +1,3 @@
-// MessageList.jsx
 import React, { useEffect, useState } from 'react';
 import './MessageList.css';
 import { useParams } from 'react-router-dom';
@@ -34,6 +33,7 @@ export function MessageList(props) {
     try {
       const getUserB = await axios.get(`http://localhost:5000/user/db/usuario/id/${userChat}`)
       setUserB(getUserB.data);
+      console.log(userB);
     } catch (error) {
       console.error(error);
     }
@@ -76,19 +76,21 @@ export function MessageList(props) {
   }, [userChat]);
 
   return (
-    <div className="message-container">
-      <h3>Bienvenido al chat con {userB.nombre}</h3>
-      {chatList.map((chat, index) => (
-        <div
-          key={index}
-          // Aplicar estilos y alineación según el remitente del mensaje
-          className={Number(chat.from_user) !== user.id_usuario ? 'received-message' : 'sent-message'}
-          style={{ alignSelf: Number(chat.from_user) !== user.id_usuario ? 'flex-end' : 'flex-start' }}>
-          <h5>{Number(chat.from_user) !== user.id_usuario ? userB.nombre : user.nombre}</h5>
-          <p>{chat.valor_mensaje}</p>
-        </div>
-      ))}
+    <div className="message-list-container">
+      <div className="message-container">
+        <h3>Bienvenido al chat con {userB.nombre}</h3>
+        {chatList.map((chat, index) => (
+          <div
+            key={index}
+            className={Number(chat.from_user) !== user.id_usuario ? 'received-message' : 'sent-message'}
+            style={{ alignSelf: Number(chat.from_user) !== user.id_usuario ? 'flex-end' : 'flex-start' }}>
+            <h5>{Number(chat.from_user) !== user.id_usuario ? userB.nombre : user.nombre}</h5>
+            <p>{chat.valor_mensaje}</p>
+          </div>
+        ))}
+      </div>
       <MessageInput user={user} sala={sala}/>
     </div>
   );
+  
 }
