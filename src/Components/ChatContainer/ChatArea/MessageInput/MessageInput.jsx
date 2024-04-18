@@ -20,21 +20,21 @@ export function MessageInput(props) {
       tipo_mensaje: 'text',
       valor_mensaje: message,
       from_user: user.id_usuario,
-      id_sala: sala.id_usuario
+      id_sala: sala.id_sala
     }
     e.preventDefault();
-    try {
+    /*try {
       await axios.post('http://localhost:5000/msg/db/nuevo-mensaje', objMsg)
     } catch (error) {
       alert(error)
-    }
+    }*/
     socket.emit('sendMessage',objMsg)
     setMessage('');
   };
 
   return (
     <div className="message-input">
-      <form onSubmit={handleSubmit}>
+      <form >
         <textarea
           className="message-textarea"
           placeholder="Escribe un mensaje..."
@@ -43,7 +43,7 @@ export function MessageInput(props) {
           onKeyDown={handleKeyDown}
           rows="3"
         ></textarea>
-        <button className="message-button" type="submit">
+        <button className="message-button" type="button" onClick={handleSubmit}>
           Enviar
         </button>
       </form>

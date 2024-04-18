@@ -33,7 +33,6 @@ export function MessageList(props) {
     try {
       const getUserB = await axios.get(`http://localhost:5000/user/db/usuario/id/${userChat}`)
       setUserB(getUserB.data);
-      console.log(userB);
     } catch (error) {
       console.error(error);
     }
@@ -46,7 +45,6 @@ export function MessageList(props) {
       if (getRoom.data[0] && getRoom.data.length > 0) {
         // Si hay datos y al menos un elemento, establece la sala con el ID del primer elemento
         setSala(getRoom.data[0]);
-        console.log(sala.id_usuario);
         fetchMensajes();
       } else {
         // Si no hay datos o los datos están vacíos, crea una nueva sala
@@ -61,8 +59,6 @@ export function MessageList(props) {
       console.error(error);
     }
   }
-  
-  
 
   // Efecto para cargar la lista de mensajes y la información del otro usuario al montar el componente
   useEffect(() => {
@@ -89,7 +85,7 @@ export function MessageList(props) {
           </div>
         ))}
       </div>
-      <MessageInput user={user} sala={sala}/>
+      <MessageInput user={user} sala={sala}/>{console.log(sala,'--- desde list')}
     </div>
   );
   

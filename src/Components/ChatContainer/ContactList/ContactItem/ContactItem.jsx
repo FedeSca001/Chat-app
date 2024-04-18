@@ -15,7 +15,8 @@ const fetchRoom = async () => {
     } else {
       // Crea la sala para estos dos usuarios
       const body = { "id_usera": userA.id_usuario, "id_userb": dato.id_usuario };
-      const newRoom = await axios.post(`http://localhost:5000/room/db/nueva-sala`, body);
+      console.log(body);
+      await axios.post(`http://localhost:5000/room/db/nueva-sala`, body);
 
       // Obtén la sala recién creada
       const room = await axios.get(`http://localhost:5000/room/db/${userA.id_usuario}/${dato.id_usuario}`);
@@ -38,8 +39,8 @@ const fetchRoom = async () => {
             alt={dato.nombre} />
       </div>
       <div className="contact-info">
-        <h3 className='contact-info-name'>{dato.nombre} {dato.apellido}</h3>
-        <p className='contact-info-p'>{dato.mail}</p>
+        <h3 className='contact-info-name'>{dato.nombre} {dato.apellido} </h3>
+        <p className='contact-info-p'>{dato.mail} Id: {dato.id_usuario}</p>
       </div>
     </div>
   );

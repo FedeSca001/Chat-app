@@ -13,7 +13,6 @@ export function ContactList(props) {
     try {
       const result = await axios.get(`http://localhost:5000/user/db/usuarios`);
       setList(result.data);
-      console.log(list);
     } catch (error) {
       console.error('Error al obtener datos:', error);
     }
