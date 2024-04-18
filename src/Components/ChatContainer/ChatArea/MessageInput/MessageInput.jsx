@@ -6,6 +6,7 @@ import axios from 'axios';
 export function MessageInput(props) {
   const [message, setMessage] = useState('');
   const { user, sala } = props
+  
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
