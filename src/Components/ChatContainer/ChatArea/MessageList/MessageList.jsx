@@ -17,16 +17,15 @@ export function MessageList(props) {
     try {
       // Obtener la lista de mensajes desde la API a traves de la ID de la sala
       const result = await axios.get(`http://localhost:5000/msg/db/${sala.id_usuario}`);
-      console.log(result.data);
       setChatList(result.data);
     } catch (error) {
       console.error('Error al obtener mensajes:', error);
     }
     // Escuchar eventos de nuevos mensajes desde el servidor de sockets
-    socket.on('receiveMessage ', (message) => {
+    socket.on('sendMessage ', (message) => {
       // Actualizar el estado de chatList con el nuevo mensaje
+      console.log(chatList);
       setChatList((state) => [...state, message]);
-      // Actualizar el almacenamiento local con el nuevo mensaje
     });
   };
   const fetchUserB = async()=>{
@@ -67,7 +66,7 @@ export function MessageList(props) {
     // Limpiar el listener cuando el componente se desmonta
     return () => {
       localStorage.removeItem('id_sala');
-      socket.off('receiveMessage ');
+      socket.off('sendMessage ');
     };
   }, [userChat]);
 
@@ -84,8 +83,8 @@ export function MessageList(props) {
             <p>{chat.valor_mensaje}</p>
           </div>
         ))}
-      </div>
-      <MessageInput user={user} sala={sala}/>{console.log(sala,'--- desde list')}
+      </div>{console.log(sala)}{console.log(userChat)}
+      <MessageInput user={user} sala={sala}/>
     </div>
   );
   

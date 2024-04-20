@@ -21,7 +21,7 @@ export function MessageInput(props) {
       tipo_mensaje: 'text',
       valor_mensaje: message,
       from_user: user.id_usuario,
-      id_sala: sala.id_sala
+      id_sala: sala.id_sala || sessionStorage.getItem('id_sala')
     }
     e.preventDefault();
     /*try {
