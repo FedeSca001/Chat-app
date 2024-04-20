@@ -68,9 +68,9 @@ export function MessageList(props) {
       socket.off('sendMessage ');
     };
   }, [userChat]);
-  useEffect(()=>{
+/*  useEffect(()=>{
     console.log('algo cambio en el socket');
-  },[socket])
+  },[socket])*/
 
   return (
     <div className="message-list-container">

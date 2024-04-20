@@ -30,7 +30,6 @@ export function MessageInput(props) {
       alert(error)
     }
     socket.emit('sendMessage',objMsg)
-    console.log('el mensaje enviado', objMsg);
     setMessage('');
   };
 
