@@ -5,8 +5,8 @@ import axios from 'axios';
 
 export function MessageInput(props) {
   const [message, setMessage] = useState('');
-  const { user, sala } = props
-  
+  const { user } = props
+
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
   };
@@ -18,18 +18,19 @@ export function MessageInput(props) {
   };
   const handleSubmit = async (e) => {
     const objMsg ={
-      tipo_mensaje: 'text',
+      tipo_mensaje: null,
       valor_mensaje: message,
       from_user: user.id_usuario,
-      id_sala: sala.id_sala || sessionStorage.getItem('id_sala')
+      id_sala: sessionStorage.getItem('id_sala')
     }
     e.preventDefault();
-    /*try {
+    try {
       await axios.post('http://localhost:5000/msg/db/nuevo-mensaje', objMsg)
     } catch (error) {
       alert(error)
-    }*/
+    }
     socket.emit('sendMessage',objMsg)
+    console.log('el mensaje enviado', objMsg);
     setMessage('');
   };
 

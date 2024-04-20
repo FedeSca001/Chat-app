@@ -3,12 +3,13 @@
     padding: 8px;
     border-radius: 8px;
     margin: 8px 0;
+    background-color: #145312;
     align-self: flex-end;
   }
   
   .received-message {
-    background-color: #e0e0e0;
-    color: #000;
+    background-color: #8d2626;
+    color: #f1f1f1;
     padding: 6px;
     border-radius: 8px;
     margin: 8px 0;

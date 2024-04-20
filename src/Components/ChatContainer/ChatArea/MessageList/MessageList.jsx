@@ -16,7 +16,7 @@ export function MessageList(props) {
   const fetchMensajes = async () => {
     try {
       // Obtener la lista de mensajes desde la API a traves de la ID de la sala
-      const result = await axios.get(`http://localhost:5000/msg/db/${sala.id_usuario}`);
+      const result = await axios.get(`http://localhost:5000/msg/db/${sessionStorage.getItem('id_sala')}`);
       setChatList(result.data);
     } catch (error) {
       console.error('Error al obtener mensajes:', error);
@@ -24,7 +24,6 @@ export function MessageList(props) {
     // Escuchar eventos de nuevos mensajes desde el servidor de sockets
     socket.on('sendMessage ', (message) => {
       // Actualizar el estado de chatList con el nuevo mensaje
-      console.log(chatList);
       setChatList((state) => [...state, message]);
     });
   };
@@ -65,10 +64,13 @@ export function MessageList(props) {
     fetchRoom()
     // Limpiar el listener cuando el componente se desmonta
     return () => {
-      localStorage.removeItem('id_sala');
+      sessionStorage.removeItem('id_sala');
       socket.off('sendMessage ');
     };
   }, [userChat]);
+  useEffect(()=>{
+    console.log('algo cambio en el socket');
+  },[socket])
 
   return (
     <div className="message-list-container">
@@ -77,14 +79,14 @@ export function MessageList(props) {
         {chatList.map((chat, index) => (
           <div
             key={index}
-            className={Number(chat.from_user) !== user.id_usuario ? 'received-message' : 'sent-message'}
-            style={{ alignSelf: Number(chat.from_user) !== user.id_usuario ? 'flex-end' : 'flex-start' }}>
+            className={Number(chat.from_user) === Number(user.id_usuario) ? 'sent-message' : 'received-message'}
+            style={{ alignSelf: Number(chat.from_user) !== Number(user.id_usuario) ? 'flex-end' : 'flex-start' }}>
             <h5>{Number(chat.from_user) !== user.id_usuario ? userB.nombre : user.nombre}</h5>
             <p>{chat.valor_mensaje}</p>
           </div>
         ))}
-      </div>{console.log(sala)}{console.log(userChat)}
-      <MessageInput user={user} sala={sala}/>
+      </div>
+      <MessageInput user={user}/>
     </div>
   );
   
