@@ -10,9 +10,7 @@ export function NavBar() {
   return (
     <nav className='nav-bar'>
       <div className='buttons'>
-        <button className='btn-nav'>
-          <img src="/notifications.svg" alt="Notifications" />
-        </button>
+        Cerrar sesión
         <button className='btn-nav' onClick={handleLogout}>
           <img src="/closeSession.svg" alt="close" />
         </button>

@@ -2,17 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1b0000;
+  background-color: #292929;
   color: #fff;
   padding: 10px 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(66, 66, 66, 0.3);
 }
 
 .buttons {
   display: flex;
   align-items: center;
+  padding: 10px;
+  border-radius: 3px;
 }
 
+.buttons:hover{
+  background-color: rgb(107, 0, 0);
+
+}
 .btn-nav {
   border-radius: 50%;
   width: 45px;
@@ -26,6 +32,3 @@
   transition: color 0.3s;
 }
 
-.btn-nav:hover {
-  background-color: rgb(255, 156, 156);
-}
